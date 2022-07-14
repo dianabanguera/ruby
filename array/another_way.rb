@@ -1,39 +1,84 @@
-list = [100, 234, 543, 22, 1234, 22]
-
-def type_number_1.1(item)
-    case
-    when item < 10
-        "Unidades"
-    when item < 100
-        "Decenas"
-    when item < 1000
-        "Centenas"
-    else
-        "Miles"
+ary = [100,234,543,22,1234,22]
+​
+def sacar_valor_posicional(num)
+  if num < 10
+    "Unidades"
+  elsif num < 100
+    "Decenas"
+  elsif num < 1000
+    "Centenas"
+  else
+    "Miles"
+  end
 end
+​
+def sacar_valor_posicional_con_case_1(num)
+  case num
+  when 0..9
+    "Unidades"
+  when 10..99
+    "Decenas"
+  when 100..999
+    "Centenas"
+  else
+    "Miles"
+  end
 end
-type_number_1 = list.map do |item|
-    type_number_1.1(item)
+​
+def sacar_valor_posicional_con_case_2(num)
+  case
+  when num < 10
+    "Unidades"
+  when num < 100
+    "Decenas"
+  when num < 1000
+    "Centenas"
+  else
+    "Miles"
+  end
 end
-puts "#{type_number_1.1}"
-
-
-puts ::::::::::::::::::::::
-
-def type_number(item)
-    case
-    when item < 10
-        "Unidades"
-    when item < 100
-        "Decenas"
-    when item < 1000
-        "Centenas"
-    else
-        "Miles"
+​
+def sacar_valor_posicional_con_hash(num)
+  valor_posicional = {
+    1 => "Unidades",
+    2 => "Decenas",
+    3 => "Centenas",
+    4 => "Miles"
+  }
+  return valor_posicional[num.to_s.length]
 end
+​
+def sacar_valor_posicional_con_array(num)
+  valor_posicional = [nil, "Unidades", "Decenas", "Centenas", "Miles"]
+  return valor_posicional[num.to_s.length]
 end
-type_number_1 = list.map do |item|
-    type_number(item)
+​
+pp ":::::::::::"
+ary_valor_posicional = ary.map do |item|
+  sacar_valor_posicional(item)
 end
-puts "#{type_number_1}"
-
+puts "El ary en valor posicional con método if else es #{ary_valor_posicional}"
+​
+pp "----------------"
+ary_valor_posicional_2 = ary.map do |item|
+  sacar_valor_posicional_con_case_1(item)
+end
+puts "El ary en valor posicional con método case ranges es #{ary_valor_posicional_2}"
+​
+pp "----------------"
+ary_valor_posicional_3 = ary.map do |item|
+  sacar_valor_posicional_con_case_2(item)
+end
+puts "El ary en valor posicional con método case inequalities es #{ary_valor_posicional_3}"
+​
+pp "----------------"
+ary_valor_posicional_4 = ary.map do |item|
+  sacar_valor_posicional_con_hash(item)
+end
+puts "El ary en valor posicional con HASH es #{ary_valor_posicional_4}"
+​
+pp "----------------"
+ary_valor_posicional_5 = ary.map do |item|
+  sacar_valor_posicional_con_array(item)
+end
+puts "El ary en valor posicional con ARRAY es #{ary_valor_posicional_5}"
